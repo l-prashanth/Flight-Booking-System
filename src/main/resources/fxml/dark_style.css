@@ -13,8 +13,80 @@
 }
 
 .dark-table-view {
+    /*-fx-min-width: 100px;*/
     -fx-background-color: #303030;
     -fx-text-fill: #ffffff;
     -fx-control-inner-background: #1c1c1c;
     -fx-table-cell-border-color: #303030;
 }
+.dark-combobox .list-cell {
+    -fx-background-color: #ffffff; /* Set the background color to black */
+    -fx-text-fill: #000000; /* Set the text color to white */
+    -fx-padding: 5px; /* Adjust padding as needed */
+}
+
+/*.dark-combobox .list-view {*/
+/*    -fx-background-color: transparent; !* Set the background color of the list view to transparent *!*/
+/*}*/
+
+/*.dark-combobox .list-cell:filled:selected {*/
+/*    -fx-background-color: transparent; !* Set the background color of the selected item to transparent *!*/
+/*}*/
+
+/*.dark-combobox .list-cell:filled:odd {*/
+/*    -fx-background-color: black; !* Set the background color of odd items to black *!*/
+/*}*/
+
+/*.dark-combobox .list-cell:filled:even {*/
+/*    -fx-background-color: black; !* Set the background color of even items to black *!*/
+/*}*/
+
+/*.dark-combobox .arrow {*/
+/*    -fx-background-color: transparent; !* Set the arrow background color to transparent *!*/
+/*}*/
+
+/*.dark-combobox .list-cell {*/
+/*    -fx-background-color: black;*/
+/*    -fx-text-fill: white;*/
+/*    -fx-padding: 5px;*/
+/*    -fx-border-style: none; !* Set border style to none *!*/
+/*}*/
+
+/*.dark-combobox .list-view {*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-border-style: none; !* Set border style to none *!*/
+/*}*/
+
+.modern-vbox {
+    -fx-spacing: 10;
+    -fx-padding: 20;
+}
+
+.modern-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.modern-combobox {
+    -fx-font-size: 14px;
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #cccccc;
+}
+
+.modern-button {
+    -fx-font-size: 16px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+.modern-table-view {
+    -fx-font-size: 14px;
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #cccccc;
+}
+/* centered_cells.css */
+
+.table-cell {
+    -fx-alignment: CENTER;
+}
+

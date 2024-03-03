@@ -20,10 +20,10 @@ public class InitDatabase {
         return args -> {
             Flight flight = new Flight();
             flight1Data(flight);
-//            customer2Data(customer);
-//            customer3Data(customer);
-//            customer4Data(customer);
-//            customer5Data(customer);
+            flight2Data(flight);
+            flight3Data(flight);
+            flight4Data(flight);
+            flight5Data(flight);
             log.info("Database Initialized");
         };
     }
@@ -36,6 +36,38 @@ public class InitDatabase {
         flight.setAirline("Boeing");
         flight.setOrigin("India");
         flight.setDestination("Dubai");
+        flight.setPrice(100000);
+        flightRepository.save(flight);
+    }
+    public void flight2Data(Flight flight){
+        flight.setId("B");
+        flight.setAirline("Boeing");
+        flight.setOrigin("Bangalore");
+        flight.setDestination("Delhi");
+        flight.setPrice(100000);
+        flightRepository.save(flight);
+    }
+    public void flight3Data(Flight flight){
+        flight.setId("C");
+        flight.setAirline("Boeing");
+        flight.setOrigin("Bangalore");
+        flight.setDestination("Mumbai");
+        flight.setPrice(100000);
+        flightRepository.save(flight);
+    }
+    public void flight4Data(Flight flight){
+        flight.setId("D");
+        flight.setAirline("Boeing");
+        flight.setOrigin("Bangalore");
+        flight.setDestination("Hyderabad");
+        flight.setPrice(100000);
+        flightRepository.save(flight);
+    }
+    public void flight5Data(Flight flight){
+        flight.setId("E");
+        flight.setAirline("Boeing");
+        flight.setOrigin("Bangalore");
+        flight.setDestination("Chennai");
         flight.setPrice(100000);
         flightRepository.save(flight);
     }

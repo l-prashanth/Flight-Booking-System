@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface FlightRepository extends MongoRepository<Flight, String> {
 
-//    List<Flight> findByOriginAndDestination(String origin, String destination);
+    List<Flight> findByOriginAndDestination(String origin, String destination);
 }
