@@ -1,9 +1,14 @@
 package com.prashanth.flight.controller;
 
 import com.prashanth.flight.model.Flight;
+import com.prashanth.flight.model.Location;
 import com.prashanth.flight.repository.FlightRepository;
 import com.prashanth.flight.service.FlightService;
+import com.prashanth.flight.util.CommonUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,50 +16,36 @@ import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
+import static com.prashanth.flight.util.CommonUtil.locationList;
+
 @Controller
+
 public class MainController {
     @Autowired
     private FlightService flightService;
+    @Autowired
+    private FlightRepository repository;
+
 
     @FXML
     private TableView<Flight> flightTableView;
 
-//    @FXML
-//    private TableColumn<Flight, String> airlineColumn;
-//
-//    @FXML
-//    private TableColumn<Flight, String> originColumn;
-//
-//    @FXML
-//    private TableColumn<Flight, String> destinationColumn;
-//
-//    @FXML
-//    private TableColumn<Flight, Double> priceColumn;
-
-    @FXML
-    public void initialize() {
-        initializeTable();
-        loadData();
-//        refreshFlightTable();
-    }
-
-
-    //    private void initializeColumns() {
-//        // Associate columns with the properties of the Flight class
-//        airlineColumn.setCellValueFactory(cellData -> cellData.getValue().airlineProperty());
-//        airlineColumn.setCellValueFactory(cellData -> cellData.getValue().airlineProperty());
-//        originColumn.setCellValueFactory(cellData -> cellData.getValue().originProperty());
-//        destinationColumn.setCellValueFactory(cellData -> cellData.getValue().destinationProperty());
-//        priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
-//
-//
-//    }
     @FXML
     private TableView<Flight> tableView;
 
-    @Autowired
-    private FlightRepository repository;
+    @FXML
+    private ComboBox<String> fromOption;
 
+    @FXML
+    private ComboBox<String> toOption;
+
+    @FXML
+    public void initialize() {
+        loadData();
+        initializeFromBox();
+        initializeTable();
+        fromOptionListener();
+    }
 
     private void initializeTable() {
         TableColumn<Flight, String> airlineColumn = new TableColumn<>("airline");
@@ -70,6 +61,18 @@ public class MainController {
         priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
 
         tableView.getColumns().addAll(airlineColumn, originColumn, destinationColumn,priceColumn);
+    }
+    private void initializeFromBox() {
+//        Location location = new Location();
+//        ObservableList<String> options = FXCollections.observableArrayList(
+//                "Delhi", "Mumbai", "Hyderabad", "Bangalore","Chennai"
+//        );
+        ObservableList<String> options = FXCollections.observableArrayList(locationList());
+        fromOption.setItems(options);
+        System.out.println("Location"+fromOption.getItems());
+    }
+    private void fromOptionListener() {
+        fromOption.valueProperty().addListener((observable, oldValue, newValue) -> System.out.println("Selected Option: " + newValue));
     }
 
     private void loadData() {

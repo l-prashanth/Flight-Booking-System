@@ -1,0 +1,20 @@
+.dark-vbox {
+    -fx-background-color: #1c1c1c;
+    -fx-padding: 20px;
+}
+
+.dark-label {
+    -fx-text-fill: #ffffff;
+}
+
+.dark-combobox {
+    -fx-background-color: #303030;
+    -fx-text-fill: #ffffff;
+}
+
+.dark-table-view {
+    -fx-background-color: #303030;
+    -fx-text-fill: #ffffff;
+    -fx-control-inner-background: #1c1c1c;
+    -fx-table-cell-border-color: #303030;
+}
