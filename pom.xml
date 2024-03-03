@@ -38,6 +38,13 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!--  https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+			<version>3.1.5</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
@@ -99,12 +106,12 @@
 			<groupId>eu.hansolo</groupId>
 			<artifactId>tilesfx</artifactId>
 			<version>17.1.17</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.openjfx</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
+<!--			<exclusions>-->
+<!--				<exclusion>-->
+<!--					<groupId>org.openjfx</groupId>-->
+<!--					<artifactId>*</artifactId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
 		</dependency>
 		<dependency>
 			<groupId>com.github.almasb</groupId>
@@ -126,6 +133,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.codehaus.mojo</groupId>-->
+<!--				<artifactId>exec-maven-plugin</artifactId>-->
+<!--				<version>3.2.0</version>-->
+<!--				<configuration>-->
+<!--					<mainClass>com.prashanth.flight.FlightApplication</mainClass>-->
+<!--					&lt;!&ndash; Additional configuration options if needed &ndash;&gt;-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

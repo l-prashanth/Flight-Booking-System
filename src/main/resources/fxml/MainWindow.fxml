@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TableView?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.prashanth.flight.controller.MainController">
+
+    <center>
+<!--        <TableView fx:id="flightTableView"/>-->
+<!--        <TableView fx:id="flightTableView">-->
+<!--            <columns>-->
+<!--                <TableColumn fx:id="airlineColumn" text="Airline" prefWidth="100">-->
+<!--                    <cellValueFactory>-->
+<!--                        <PropertyValueFactory property="airline" />-->
+<!--                    </cellValueFactory>-->
+<!--                </TableColumn>-->
+<!--                &lt;!&ndash; Add more columns as needed &ndash;&gt;-->
+<!--            </columns>-->
+<!--        </TableView>-->
+
+<!--        <TableView fx:id="flightTableView">-->
+<!--            <columns>-->
+<!--                <TableColumn text="Airline" fx:id="airlineColumn"/>-->
+<!--                <TableColumn text="Origin" fx:id="originColumn"/>-->
+<!--                <TableColumn text="Destination" fx:id="destinationColumn"/>-->
+<!--                <TableColumn text="Price" fx:id="priceColumn"/>-->
+<!--            </columns>-->
+<!--        </TableView>-->
+
+        <TableView fx:id="tableView"/>
+
+    </center>
+
+</BorderPane>
