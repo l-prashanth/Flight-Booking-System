@@ -34,9 +34,11 @@ public class InitDatabase {
     public void flight1Data(Flight flight){
         flight.setId("A");
         flight.setAirline("Boeing");
-        flight.setOrigin("India");
-        flight.setDestination("Dubai");
+        flight.setOrigin("Mumbai");
+        flight.setDestination("Bangalore");
         flight.setPrice(100000);
+        flight.setFlightSlot("12:00 -14:00");
+        flight.setFlightType("Business");
         flightRepository.save(flight);
     }
     public void flight2Data(Flight flight){

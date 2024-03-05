@@ -18,45 +18,34 @@ public class Flight {
 
     private String airline;
 
-    private  String origin;
-    private  String destination;
-    private  double price;
+    private String origin;
+    private String destination;
+    private double price;
+    private String flightSlot;
+    private String flightType;
+    // JavaFX property for the 'variable' field
 
 
-    // Default constructor
-    public Flight() {}
-
-    // Constructor with necessary fields
-    public Flight(String origin, String destination, double price) {
-        this.origin = origin;
-        this.destination = destination;
-        this.price = price;
+    public StringProperty flightSlotProperty() {
+        return new SimpleStringProperty(this, "flightSlot", flightSlot);
     }
 
-
-    // Other properties and methods...
-
-    // JavaFX property for the 'id' field
-    public StringProperty idProperty() {
-        return new SimpleStringProperty(this, "id", id);
+    public StringProperty flightTypeProperty() {
+        return new SimpleStringProperty(this, "flightType", flightType);
     }
 
-    // JavaFX property for the 'airline' field
     public StringProperty airlineProperty() {
         return new SimpleStringProperty(this, "airline", airline);
     }
 
-    // JavaFX property for the 'origin' field
     public StringProperty originProperty() {
         return new SimpleStringProperty(this, "origin", origin);
     }
 
-    // JavaFX property for the 'destination' field
     public StringProperty destinationProperty() {
         return new SimpleStringProperty(this, "destination", destination);
     }
 
-    // JavaFX property for the 'price' field
     public SimpleDoubleProperty priceProperty() {
         return new SimpleDoubleProperty(this, "price", price);
     }

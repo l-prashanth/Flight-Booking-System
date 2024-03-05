@@ -7,55 +7,67 @@
     -fx-text-fill: #ffffff;
 }
 
-.dark-combobox {
-    -fx-background-color: #303030;
-    -fx-text-fill: #ffffff;
-}
+/*.dark-combobox {*/
 
-.dark-table-view {
-    /*-fx-min-width: 100px;*/
-    -fx-background-color: #303030;
+/*    -fx-background-color: #303030;*/
+/*    -fx-text-fill: #ffffff;*/
+/*}*/
+
+/*.dark-table-view {*/
+/*    !*-fx-min-width: 100px;*!*/
+/*    -fx-background-color: #303030;*/
+/*    -fx-text-fill: #ffffff;*/
+/*    -fx-control-inner-background: #1c1c1c;*/
+/*    -fx-table-cell-border-color: #303030;*/
+/*}*/
+/*.dark-combobox .list-cell {*/
+/*    -fx-control-inner-background: #353535;*/
+/*    -fx-control-inner-border: derive(#353535, 20%);*/
+/*    -fx-control-inner-background-alt: derive(#353535, 30%);*/
+/*    -fx-control-inner-border-alt: derive(#353535, 50%);*/
+/*    -fx-background-color: #353535; !* Set the background color to black *!*/
+/*    -fx-text-fill: #ffffff; !* Set the text color to white *!*/
+/*    !*-fx-padding: 5px; !* Adjust padding as needed *!*!*/
+/*}*/
+/*.dark-combobox .list-view .cell  {*/
+/*    -fx-background-color: #2B545E;*/
+/*}*/
+
+.dark-combobox .list-cell {
+    -fx-control-inner-background: #353535;
+    -fx-control-inner-border: none; /* Set border to none or adjust as needed */
+    -fx-control-inner-background-alt: derive(#353535, 30%);
+    -fx-control-inner-border-alt: none; /* Set border to none or adjust as needed */
+    -fx-background-color: #353535;
     -fx-text-fill: #ffffff;
-    -fx-control-inner-background: #1c1c1c;
-    -fx-table-cell-border-color: #303030;
 }
 .dark-combobox .list-cell {
-    -fx-background-color: #ffffff; /* Set the background color to black */
-    -fx-text-fill: #000000; /* Set the text color to white */
-    -fx-padding: 5px; /* Adjust padding as needed */
+    -fx-control-inner-background: #353535;
+    -fx-control-inner-background-alt: derive(#353535, 30%);
+}
+.dark-combobox .list-cell {
+    -fx-padding: 0; /* or adjust as needed */
+    -fx-margin: 0; /* or adjust as needed */
+}
+.dark-combobox .list-cell {
+    -fx-control-inner-background: -fx-background;
+    -fx-control-inner-background-alt: -fx-control-inner-background;
+}
+.dark-combobox .list-cell {
+    -fx-control-inner-background: #353535;
+    -fx-control-inner-border: none;
+    -fx-control-inner-background-alt: derive(#353535, 30%);
+    -fx-control-inner-border-alt: none;
+    -fx-background-color: #353535;
+    -fx-text-fill: #ffffff;
 }
 
-/*.dark-combobox .list-view {*/
-/*    -fx-background-color: transparent; !* Set the background color of the list view to transparent *!*/
-/*}*/
+/* Hide the separator by setting its opacity to zero */
+.dark-combobox .list-view .filler {
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+}
 
-/*.dark-combobox .list-cell:filled:selected {*/
-/*    -fx-background-color: transparent; !* Set the background color of the selected item to transparent *!*/
-/*}*/
-
-/*.dark-combobox .list-cell:filled:odd {*/
-/*    -fx-background-color: black; !* Set the background color of odd items to black *!*/
-/*}*/
-
-/*.dark-combobox .list-cell:filled:even {*/
-/*    -fx-background-color: black; !* Set the background color of even items to black *!*/
-/*}*/
-
-/*.dark-combobox .arrow {*/
-/*    -fx-background-color: transparent; !* Set the arrow background color to transparent *!*/
-/*}*/
-
-/*.dark-combobox .list-cell {*/
-/*    -fx-background-color: black;*/
-/*    -fx-text-fill: white;*/
-/*    -fx-padding: 5px;*/
-/*    -fx-border-style: none; !* Set border style to none *!*/
-/*}*/
-
-/*.dark-combobox .list-view {*/
-/*    -fx-background-color: transparent;*/
-/*    -fx-border-style: none; !* Set border style to none *!*/
-/*}*/
 
 .modern-vbox {
     -fx-spacing: 10;
@@ -88,5 +100,29 @@
 
 .table-cell {
     -fx-alignment: CENTER;
+}
+/* dark_style.css */
+
+.dark-datepicker {
+    -fx-pref-width: 18ex;
+
+    -fx-control-inner-background: #353535;
+    -fx-control-inner-border: derive(#353535, 20%);
+    -fx-control-inner-background-alt: derive(#353535, 30%);
+    -fx-control-inner-border-alt: derive(#353535, 50%);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.dark-datepicker .arrow-button {
+    -fx-background-color: #1f1f1f;
+}
+
+.dark-datepicker .arrow-button:hover {
+    -fx-background-color: #2f2f2f;
+}
+
+.dark-datepicker .arrow-button:pressed {
+    -fx-background-color: #141414;
 }
 
