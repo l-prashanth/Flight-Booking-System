@@ -8,8 +8,9 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
 @Data
-//@AllArgsConstructor
 @Document(collection = "flights")
 public class Flight {
 
@@ -21,6 +22,8 @@ public class Flight {
     private String origin;
     private String destination;
     private double price;
+    private String departDate;
+    private String returnDate;
     private String flightSlot;
     private String flightType;
     // JavaFX property for the 'variable' field

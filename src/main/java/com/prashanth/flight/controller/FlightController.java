@@ -11,8 +11,7 @@ import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import static com.prashanth.flight.util.CommonUtil.*;
-import static com.prashanth.flight.util.CommonUtil.fxFlightTypeList;
+import static com.prashanth.flight.util.CommonUtil.formatDateMonthYear;
 
 @Controller
 
@@ -23,8 +22,6 @@ public class FlightController {
     private LoadFlightService loadFlightService;
     @Autowired
     private ColumnPropertyService columnPropertyService;
-    @Autowired
-    private DepartDateService departDateService;
     @Autowired
     private LocationService locationService;
     @Autowired
@@ -55,8 +52,9 @@ public class FlightController {
     public void initialize() {
         initializeTable();
         locationHandler();
+        flightDateHandler();
         flightTypeHandler();
-        departDateHandler();
+//        departDateHandler();
     }
     public void locationHandler(){
         locationService.initializeFromLocation(fromLocationOption);
@@ -74,10 +72,10 @@ public class FlightController {
         flightDateService.departDateListener(departDate);
         flightDateService.returnDateListener(returnDate);
     }
-    public void departDateHandler(){
-        departDateService.initializeDepartDate(departDate);
-        departDateService.departDateListener(departDate);
-    }
+//    public void departDateHandler(){
+//        departDateService.initializeDepartDate(departDate);
+//        departDateService.departDateListener(departDate);
+//    }
 
     private void initializeTable() {
         columnPropertyService.tableColumnProperties(tableView);
@@ -85,7 +83,10 @@ public class FlightController {
 
     @FXML
     private void findFlightButtonClick() {
-        loadFlightService.findFlightButtonClick(fromLocationOption, toLocationOption, tableView);
+        loadFlightService.findFlightButtonClick(fromLocationOption, toLocationOption,
+                formatDateMonthYear(departDate),formatDateMonthYear(returnDate),flightTypeOption, tableView);
+        columnPropertyService.loadRecordCount(fromLocationOption.getValue(),toLocationOption.getValue(),
+                formatDateMonthYear(departDate), formatDateMonthYear(returnDate),flightTypeOption.getValue(),tableView);
     }
 
     @FXML

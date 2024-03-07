@@ -33,39 +33,78 @@
 /*    -fx-background-color: #2B545E;*/
 /*}*/
 
-.dark-combobox .list-cell {
-    -fx-control-inner-background: #353535;
-    -fx-control-inner-border: none; /* Set border to none or adjust as needed */
-    -fx-control-inner-background-alt: derive(#353535, 30%);
-    -fx-control-inner-border-alt: none; /* Set border to none or adjust as needed */
-    -fx-background-color: #353535;
-    -fx-text-fill: #ffffff;
-}
-.dark-combobox .list-cell {
-    -fx-control-inner-background: #353535;
-    -fx-control-inner-background-alt: derive(#353535, 30%);
-}
-.dark-combobox .list-cell {
-    -fx-padding: 0; /* or adjust as needed */
-    -fx-margin: 0; /* or adjust as needed */
-}
-.dark-combobox .list-cell {
-    -fx-control-inner-background: -fx-background;
-    -fx-control-inner-background-alt: -fx-control-inner-background;
-}
-.dark-combobox .list-cell {
-    -fx-control-inner-background: #353535;
-    -fx-control-inner-border: none;
-    -fx-control-inner-background-alt: derive(#353535, 30%);
-    -fx-control-inner-border-alt: none;
-    -fx-background-color: #353535;
-    -fx-text-fill: #ffffff;
+/*.dark-combobox .list-cell {*/
+/*    -fx-control-inner-background: #353535;*/
+/*    -fx-control-inner-border: none; !* Set border to none or adjust as needed *!*/
+/*    -fx-control-inner-background-alt: derive(#353535, 30%);*/
+/*    -fx-control-inner-border-alt: none; !* Set border to none or adjust as needed *!*/
+/*    -fx-background-color: #353535;*/
+/*    -fx-text-fill: #ffffff;*/
+/*}*/
+/*.dark-combobox .list-cell {*/
+/*    -fx-control-inner-background: #353535;*/
+/*    -fx-control-inner-background-alt: derive(#353535, 30%);*/
+/*}*/
+/*.dark-combobox .list-cell {*/
+/*    -fx-padding: 0; !* or adjust as needed *!*/
+/*    -fx-margin: 0; !* or adjust as needed *!*/
+/*}*/
+/*.dark-combobox .list-cell {*/
+/*    -fx-control-inner-background: -fx-background;*/
+/*    -fx-control-inner-background-alt: -fx-control-inner-background;*/
+/*}*/
+/*.dark-combobox .list-cell {*/
+/*    -fx-control-inner-background: #353535;*/
+/*    -fx-control-inner-border: none;*/
+/*    -fx-control-inner-background-alt: derive(#353535, 30%);*/
+/*    -fx-control-inner-border-alt: none;*/
+/*    -fx-background-color: #353535;*/
+/*    -fx-text-fill: #ffffff;*/
+/*}*/
+
+/*!* Hide the separator by setting its opacity to zero *!*/
+/*.dark-combobox .list-view .filler {*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-opacity: 0;*/
+/*}*/
+/* CustomComboBoxStyle.css */
+
+.dark-combobox .arrow-button {
+    -fx-background-color: #2B545E; /* Background color of the arrow button */
+    -fx-shape: null; /* Remove the default arrow shape */
 }
 
-/* Hide the separator by setting its opacity to zero */
-.dark-combobox .list-view .filler {
-    -fx-background-color: transparent;
-    -fx-opacity: 0;
+.dark-combobox .list-cell {
+    -fx-background-color: #353535; /* Background color of the list cells */
+    -fx-text-fill: #ffffff; /* Text color of the list cells */
+}
+
+.dark-combobox .list-view {
+    -fx-background-color: #2B545E; /* Background color of the dropdown */
+}
+
+.dark-combobox .list-view .cell {
+    -fx-background-color: #2B545E; /* Background color of each item in the dropdown */
+    -fx-text-fill: #ffffff; /* Text color of each item in the dropdown */
+}
+
+.dark-combobox .list-view .cell:hover {
+    -fx-background-color: #446C78; /* Background color of a hovered item in the dropdown */
+}
+
+.dark-combobox .list-view .cell:filled:selected {
+    -fx-background-color: #1F3D45; /* Background color of a selected item in the dropdown */
+    -fx-text-fill: #ffffff; /* Text color of a selected item in the dropdown */
+}
+
+.dark-combobox .list-view .cell:filled:focused {
+    -fx-background-color: #1F3D45; /* Background color of a focused item in the dropdown */
+    -fx-text-fill: #ffffff; /* Text color of a focused item in the dropdown */
+}
+
+.dark-combobox .list-view .cell:filled:selected:focused {
+    -fx-background-color: #1F3D45; /* Background color of a selected and focused item in the dropdown */
+    -fx-text-fill: #ffffff; /* Text color of a selected and focused item in the dropdown */
 }
 
 
@@ -106,16 +145,16 @@
 .dark-datepicker {
     -fx-pref-width: 18ex;
 
-    -fx-control-inner-background: #353535;
-    -fx-control-inner-border: derive(#353535, 20%);
-    -fx-control-inner-background-alt: derive(#353535, 30%);
-    -fx-control-inner-border-alt: derive(#353535, 50%);
+    -fx-control-inner-background: #2f2f2f;
+    -fx-control-inner-border: derive(#2f2f2f, 20%);
+    -fx-control-inner-background-alt: derive(#2f2f2f, 30%);
+    -fx-control-inner-border-alt: derive(#2f2f2f, 50%);
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 
 .dark-datepicker .arrow-button {
-    -fx-background-color: #1f1f1f;
+    -fx-background-color: #2f2f2f;
 }
 
 .dark-datepicker .arrow-button:hover {

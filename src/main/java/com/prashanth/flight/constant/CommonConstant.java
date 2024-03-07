@@ -15,9 +15,10 @@ public class CommonConstant {
     public static  final String MUMBAI = "MUMBAI";
     public static  final String DELHI = "DELHI";
     public static  final String CHENNAI = "CHENNAI";
-    public static  final String ECONOMY = "Economy";
-    public static  final String ECONOMY_PRO = "Economy Pro";
-    public static  final String BUSINESS = "Business";
-    public static  final String FIRST_CLASS = "First Class";
+    public static  final String ECONOMY = "ECONOMY";
+    public static  final String ECONOMY_PRO = "ECONOMY PRO";
+    public static  final String BUSINESS = "BUSINESS";
+    public static  final String FIRST_CLASS = "FIRST CLASS";
+
 
 }

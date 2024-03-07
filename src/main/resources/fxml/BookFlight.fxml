@@ -13,11 +13,12 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.prashanth.flight.controller.FlightController">
+
     <stylesheets>
-        <URL value="@dark_style.css" />
+        <URL value="@dark_style.css"/>
     </stylesheets>
     <center>
-        <VBox spacing="10" styleClass="dark-vbox">
+        <VBox spacing="50" styleClass="dark-vbox">
             <HBox spacing="10">
                 <HBox>
                     <Label text="From: " styleClass="dark-label"/>
@@ -39,7 +40,7 @@
                 </HBox>
                 <HBox>
                     <Label text="FlightType: " styleClass="dark-label"/>
-                    <ComboBox fx:id="flightTypeOption" styleClass="dark-combobox" />
+                    <ComboBox fx:id="flightTypeOption" styleClass="dark-combobox"/>
                 </HBox>
             </HBox>
 
@@ -48,15 +49,20 @@
                 <Button text="Click Me" onAction="#findFlightButtonClick" styleClass="dark-button"/>
             </HBox>
 
+<!--            <VBox spacing="50" styleClass="dark-vbox" VBox.vgrow="ALWAYS">-->
 
-            <TableView fx:id="tableView" styleClass="modern-table-view" VBox.vgrow="ALWAYS" visible="false" onMouseClicked="#handleTableRowClick">
-<!--                to fill the screenpane size-->
-<!--                <columnResizePolicy>-->
-<!--                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />-->
-<!--                </columnResizePolicy>-->
-            </TableView>
+                <TableView fx:id="tableView" styleClass="modern-table-view" onMouseClicked="#handleTableRowClick">
+                <!--                <TableView fx:id="tableView" styleClass="modern-table-view" VBox.vgrow="ALWAYS" visible="false"-->
+<!--                           onMouseClicked="#handleTableRowClick">-->
+                    <!--                to fill the screenpane size-->
+                    <!--                <columnResizePolicy>-->
+                    <!--                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />-->
+                    <!--                </columnResizePolicy>-->
+                </TableView>
+<!--            </VBox>-->
             <HBox>
-                <Button fx:id="bookButton" text="Book Flight" onAction="#handleBookingButtonClick" styleClass="dark-button" visible="false"/>
+                <Button fx:id="bookButton" text="Book Flight" onAction="#handleBookingButtonClick"
+                        styleClass="dark-button" visible="false"/>
             </HBox>
 
         </VBox>

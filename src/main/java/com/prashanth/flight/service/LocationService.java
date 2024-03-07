@@ -11,6 +11,7 @@ public class LocationService {
     public void fromLocationListener(ComboBox<String> fromLocationOption, ComboBox<String> toLocationOption){
         fromLocationOption.valueProperty().addListener((observable, oldValue, newValue) -> {
             initializeToLocation(toLocationOption);
+            System.out.println("From Location:\t"+ newValue);
             if (isNotNullOrEmpty(newValue))
                 toLocationOption.getItems().remove(newValue);
         });
@@ -25,6 +26,7 @@ public class LocationService {
     public void toLocationListener(ComboBox<String> fromLocationOption,ComboBox<String> toLocationOption) {
         toLocationOption.valueProperty().addListener((observable, oldValue, newValue) -> {
             initializeFromLocation(fromLocationOption);
+            System.out.println("To Location:\t"+newValue);
             if (isNotNullOrEmpty(newValue))
                 fromLocationOption.getItems().remove(newValue);
         });
