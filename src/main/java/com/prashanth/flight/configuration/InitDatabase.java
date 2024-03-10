@@ -1,7 +1,9 @@
 package com.prashanth.flight.configuration;
 
 import com.prashanth.flight.model.Flight;
+import com.prashanth.flight.model.LoginCredentials;
 import com.prashanth.flight.repository.FlightRepository;
+import com.prashanth.flight.repository.LoginRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 import static com.prashanth.flight.constant.CommonConstant.*;
 import static com.prashanth.flight.constant.CommonConstant.FIRST_CLASS;
@@ -23,109 +28,85 @@ import static com.prashanth.flight.util.CommonUtil.randomTimeGenerator;
 public class InitDatabase {
 
     private FlightRepository flightRepository;
+    private LoginRepository loginRepository;
+
 
     @Bean
-    CommandLineRunner initDatabases(){
+    CommandLineRunner initDatabases() {
         return args -> {
-            flightDataOnModification();
+            populateLogin();
 //            generateAllCombinations();
             log.info("Database Initialized");
         };
     }
-    private static int uniqueIdCounter = 1;
 
-    private void flightDataOnModification() {
-        LocalDate startDate = LocalDate.now();
+    public void populateLogin() {
+        LoginCredentials loginCredentials = new LoginCredentials();
+        loginCredentials.setUsername("abc");
+        loginCredentials.setPassword("abc");
+        loginCredentials.setName("PRASHANTH");
+        loginRepository.save(loginCredentials);
+    }
 
-        for (int i = 0; i < 10; i++) {
-            Flight flight = new Flight();
-            int uniqueId = uniqueIdCounter++; // Implement a thread-safe ID generation method
-            flight.setId(String.valueOf(uniqueId));
 
-            // Fetch data from the repository based on uniqueId (adjust this logic based on your repository structure)
-            Flight existingFlight = flightRepository.findById(String.valueOf(uniqueId)).orElse(new Flight());
+    public void generateAllCombinations() {
+        for (String airline : AIRLINES) {
+            Set<String> usedDestinations = new HashSet<>();
 
-            flight.setAirline(existingFlight.getAirline());
-            flight.setOrigin(existingFlight.getOrigin());
-            flight.setDestination(existingFlight.getDestination());
-            flight.setPrice(existingFlight.getPrice());
-            flight.setFlightSlot(existingFlight.getFlightSlot());
-            flight.setFlightType(existingFlight.getFlightType());
-            flight.setDepartDate(startDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            flight.setReturnDate(startDate.plusDays(1).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            startDate = startDate.plusDays(1);
-
-            flightRepository.save(flight);
+            for (String origin : ORIGINS) {
+                for (String destination : ORIGINS) {
+                    if (!origin.equals(destination) && !usedDestinations.contains(destination)) {
+                        for (String flightType : FLIGHT_TYPES) {
+                            // Generate and store flight data
+                            generateAndStoreFlightData(airline, origin, destination, flightType);
+                        }
+                        // Update usedDestinations set after processing one destination
+                        usedDestinations.add(destination);
+                    }
+                }
+                // Clear usedDestinations set after processing one origin
+                usedDestinations.clear();
+            }
         }
     }
 
-    public void generateAllCombinations() {
-        String[] origins = {DELHI, MUMBAI, HYDERABAD, BANGALORE, CHENNAI};
-        String[] flightTypes = {ECONOMY, ECONOMY_PRO, BUSINESS, FIRST_CLASS};
-        String[] airlines = {INDIGO, SPICEJET, AIR_INDIA, AKASA_AIR};
 
-        for (String origin : origins) {
-            for (String destination : origins) {
-                if (!origin.equals(destination)) {
-                    for (String flightType : flightTypes) {
-                        for (String airline : airlines) {
-                            LocalDate startDate = LocalDate.now();
-                            for (int i = 0; i < 10; i++) {
-                                String uniqueId = String.valueOf(uniqueIdCounter++);
-                                String departDate = startDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-                                String returnDate = startDate.plusDays(1).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    private void generateAndStoreFlightData(String airline, String origin, String destination, String flightType) {
+        LocalDate todayDate = LocalDate.now();
 
-                                flightData(uniqueId, airline, origin, destination, randomPriceGenerator(),
-                                        randomTimeGenerator() + "-" + randomTimeGenerator(), flightType, departDate, returnDate);
-                                startDate = startDate.plusDays(1);
-                            }
-                        }
+        for (int departDay = 0; departDay <= 10; departDay++) {
+            LocalDate currentDepartDate = todayDate.plusDays(departDay);
+
+            for (int returnDay = 1; returnDay <= 10; returnDay++) {
+                LocalDate currentReturnDate = currentDepartDate.plusDays(returnDay);
+
+                if (!currentReturnDate.isBefore(currentDepartDate)) {
+                    String uniqueId = String.valueOf(uniqueIdCounter++);
+                    String formattedDepartDate = currentDepartDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                    String formattedReturnDate = currentReturnDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+                    String combinationKey = airline + "-" + origin + "-" + destination + "-" + flightType + "-" +
+                            formattedDepartDate + "-" + formattedReturnDate;
+
+                    if (!USED_COMBINATIONS.contains(combinationKey)) {
+                        Flight flight = new Flight();
+                        flight.setId(uniqueId);
+                        flight.setAirline(airline);
+                        flight.setOrigin(origin);
+                        flight.setDestination(destination);
+                        flight.setPrice(randomPriceGenerator());
+                        flight.setFlightSlot(randomTimeGenerator() + "-" + randomTimeGenerator());
+                        flight.setFlightType(flightType);
+                        flight.setDepartDate(formattedDepartDate);
+                        flight.setReturnDate(formattedReturnDate);
+
+                        flightRepository.save(flight);
+                        USED_COMBINATIONS.add(combinationKey);
                     }
                 }
             }
         }
     }
-
-    // Replace these methods with your actual implementation
-    private void flightData(String id, String airline, String origin, String destination, int price,
-                            String flightSlot, String flightType, String departDate, String returnDate) {
-        Flight flight = new Flight();
-        flight.setId(id);
-        flight.setAirline(airline);
-        flight.setOrigin(origin);
-        flight.setDestination(destination);
-        flight.setPrice(price);
-        flight.setFlightSlot(flightSlot);
-        flight.setFlightType(flightType);
-        flight.setDepartDate(departDate);
-        flight.setReturnDate(returnDate);
-        flightRepository.save(flight);
-    }
-
-    // Method with all possible combinations
-//    public void generateAllCombinations() {
-//
-//        String[] origins = {DELHI, MUMBAI, HYDERABAD, BANGALORE, CHENNAI};
-//        String[] flightTypes = {ECONOMY, ECONOMY_PRO, BUSINESS, FIRST_CLASS};
-//        String[] airlines = {INDIGO, SPICEJET, AIR_INDIA, AKASA_AIR};
-//
-//        for (String origin : origins) {
-//            for (String destination : origins) {
-//                if (!origin.equals(destination)) {
-//                    for (String flightType : flightTypes) {
-//                        for (String airline : airlines) {
-//                            String uniqueId = "" + (uniqueIdCounter++);
-//                            String departDate = dateHandler("Depart");
-//                            String returnDate = dateHandler("Return");
-//
-//                            flightData(uniqueId, airline, origin, destination, randomPriceGenerator(),
-//                                    randomTimeGenerator() + "-" + randomTimeGenerator(), flightType, departDate, returnDate);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
 
 
 }

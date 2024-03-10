@@ -40,23 +40,16 @@ public class ColumnPropertyService {
                                String departDate, String returnDate, String flightType,TableView<Flight> tableView) {
 
         int recordCount= findFlightsByCriteria(origin, destination, departDate, returnDate, flightType).size();
-        tableView.prefHeightProperty().bind(Bindings.size(tableView.getItems()).multiply(tableView.getFixedCellSize()).add(38*recordCount));
+        tableView.prefHeightProperty().bind(Bindings.size(tableView.getItems()).multiply(tableView.getFixedCellSize()).add(1000));
     }
 
     public List<Flight> findFlightsByCriteria(String origin, String destination, String departDate,
                                               String returnDate, String flightType) {
-        origin = origin.trim();
-        destination = destination.trim();
-        departDate = departDate.trim();
-        returnDate = returnDate.trim();
-        flightType = flightType.trim();
-
-        // Log input parameters for debugging
-        System.out.println("Origin: " + origin);
-        System.out.println("Destination: " + destination);
-        System.out.println("DepartDate: " + departDate);
-        System.out.println("ReturnDate: " + returnDate);
-        System.out.println("FlightType: " + flightType);
+//        origin = origin.trim();
+//        destination = destination.trim();
+//        departDate = departDate.trim();
+//        returnDate = returnDate.trim();
+//        flightType = flightType.trim();
         return flightRepository.findByOriginAndDestinationAndDepartDateAndReturnDateAndFlightType(
                 origin, destination, departDate, returnDate, flightType
         );

@@ -29,8 +29,16 @@ public class Flight {
     // JavaFX property for the 'variable' field
 
 
+
     public StringProperty flightSlotProperty() {
         return new SimpleStringProperty(this, "flightSlot", flightSlot);
+    }
+    public StringProperty departDateProperty() {
+        return new SimpleStringProperty(this, "departDate", departDate);
+
+    }
+    public StringProperty returnDateProperty() {
+        return new SimpleStringProperty(this, "returnDate", returnDate);
     }
 
     public StringProperty flightTypeProperty() {
