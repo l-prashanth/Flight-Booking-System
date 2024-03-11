@@ -110,34 +110,5 @@ public class CommonUtil {
         int randomMinutes = random.nextBoolean() ? 0 : 30;
         return String.format("%02d:%02d", randomHours, randomMinutes);
     }
-    public static String dateHandler(String operation) {
-        LocalDate startDate;
-        LocalDate endDate;
-        String[] dateArray;
-
-        if (operation.equals("Depart")) {
-            // Departure dates from today to today + 10
-            startDate = LocalDate.now();
-            endDate = startDate.plusDays(10);
-            dateArray = new String[11];
-        } else if (operation.equals("Return")) {
-            // Return dates from tomorrow to tomorrow + 11
-            startDate = LocalDate.now().plusDays(1);
-            endDate = startDate.plusDays(11);
-            dateArray = new String[12];
-        } else {
-            return ""; // Handle other cases as needed
-        }
-
-        int i = 0;
-        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
-            dateArray[i++] = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        }
-
-        String randomDate = dateArray[random.nextInt(dateArray.length)];
-        System.out.println(operation + " Dates:");
-        System.out.println(randomDate);
-        return randomDate;
-    }
 
 }

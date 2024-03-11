@@ -1,15 +1,11 @@
 package com.prashanth.flight.controller;
 
 import com.prashanth.flight.model.Flight;
-import com.prashanth.flight.model.SelectedTableRow;
-import com.prashanth.flight.repository.FlightRepository;
-import com.prashanth.flight.repository.SelectedTableRowRepository;
 import com.prashanth.flight.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -18,6 +14,7 @@ import static com.prashanth.flight.util.CommonUtil.formatDateMonthYear;
 @Controller
 
 public class FlightController {
+
     @Autowired
     private TableRowClickService tableRowClickService;
     @Autowired
@@ -33,66 +30,105 @@ public class FlightController {
     @Autowired
     private LoginService loginService;
     @Autowired
-    private SelectedTableRowRepository selectedTableRowRepository;
-    @Autowired
     private PDFGeneratorService pdfGeneratorService;
 
     @FXML
     private BorderPane bookingPane;
     @FXML
+    private BorderPane dashboardPane;
+    @FXML
+    private BorderPane summaryPane;
+    @FXML
+    private BorderPane loginPane;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
     private TableView<Flight> tableView;
-
     @FXML
     private ComboBox<String> fromLocationOption;
-
     @FXML
     private ComboBox<String> toLocationOption;
-
+    @FXML
+    private ComboBox<String> flightTypeOption;
     @FXML
     private Button bookButton;
     @FXML
-    private ComboBox<String> flightTypeOption;
+    private Button downloadPdf;
     @FXML
     private DatePicker departDate;
     @FXML
     private DatePicker returnDate;
     @FXML
-    private GridPane dashboardPane;
-    @FXML
-    private BorderPane loginPane;
-    @FXML
-    private TextField usernameField;
-
-    @FXML
-    private PasswordField passwordField;
-
-    @FXML
     private Label originLabel;
-
     @FXML
     private Label destinationLabel;
-
     @FXML
     private Label departDateLabel;
-
     @FXML
     private Label returnDateLabel;
-
     @FXML
     private Label flightTypeLabel;
+    @FXML
+    private Label flightSlotLabel;
+    @FXML
+    private Label flightPriceLabel;
+    @FXML
+    public void initialize() {
+        initializeTable();
+        locationHandler();
+        flightDateHandler();
+        flightTypeHandler();
+        handlePaneVisibility();
+
+    }
+    @FXML
+    private void logoutNav(){
+        loginPane.setVisible(true);
+        bookingPane.setVisible(false);
+        dashboardPane.setVisible(false);
+        summaryPane.setVisible(false);
+        usernameField.clear();
+        passwordField.clear();
+        usernameField.setStyle(null);
+        passwordField.setStyle(null);
+    }
+//    @FXML
+//    private void backToBooking(){
+//        bookingPane.setStyle(null);
+//        bookingPane.setVisible(true);
+//        dashboardPane.setVisible(false);
+//        loginPane.setVisible(false);
+//
+//
+//    }
+    @FXML
+    private void backToBooking() {
+        // Reset styles and visibility
+        bookingPane.setStyle(null);
+        bookingPane.setVisible(true);
+        dashboardPane.setVisible(false);
+        loginPane.setVisible(false);
+
+        // Additional logic for clearing fields or resetting other components
+         usernameField.clear();
+         passwordField.clear();
+         usernameField.setStyle(null);
+         passwordField.setStyle(null);
+    }
 
     @FXML
-    private BorderPane summaryPane;
-    @FXML
-    private Button downloadPdf;
-
+    private void handleBookingButtonClick() {
+        dashboardPane.setVisible(false);
+        summaryPane.setVisible(true);
+    }
     @FXML
     private void handleLogin() {
         loginService.handleLogin(usernameField, passwordField, bookingPane);
-
     }
 
-    public void handleKeyPress(javafx.scene.input.KeyEvent event) {
+    public void loginEnterButton(javafx.scene.input.KeyEvent event) {
         if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER)) {
             loginService.handleLogin(usernameField, passwordField, bookingPane);
         }
@@ -101,70 +137,6 @@ public class FlightController {
     public void setDownloadPdf(){
         pdfGeneratorService.pdfGenerator();
     }
-
-    @FXML
-    public void initialize() {
-        initializeTable();
-        locationHandler();
-        flightDateHandler();
-        flightTypeHandler();
-        bookingPane.setVisible(false);
-        dashboardPane.setVisible(false);
-        summaryPane.setVisible(false);
-        populate();
-    }
-
-    public void populate() {
-        SelectedTableRow flightDetails = selectedTableRowRepository.findAll().get(0);
-//
-//        originLabel.setText(flightDetails.getOrigin());
-//        destinationLabel.setText(flightDetails.getDestination());
-//        departDateLabel.setText(flightDetails.getDepartDate());
-//        returnDateLabel.setText(flightDetails.getReturnDate());
-//        flightTypeLabel.setText(flightDetails.getFlightType());
-
-        originLabel.textProperty().bind(flightDetails.originProperty());
-        destinationLabel.textProperty().bind(flightDetails.destinationProperty());
-        departDateLabel.textProperty().bind(flightDetails.departDateProperty());
-        returnDateLabel.textProperty().bind(flightDetails.returnDateProperty());
-        flightTypeLabel.textProperty().bind(flightDetails.flightTypeProperty());
-//
-//        if (dashboardPane != null) {
-//            dashboardPane.setVisible(true);  // Adjust visibility as needed
-//        } else {
-//            System.err.println("dashboardPane is null. Check your FXML file and @FXML annotation.");
-//        }
-
-    }
-
-
-    public void locationHandler() {
-        locationService.initializeFromLocation(fromLocationOption);
-        locationService.initializeToLocation(toLocationOption);
-        locationService.fromLocationListener(fromLocationOption, toLocationOption);
-        locationService.toLocationListener(fromLocationOption, toLocationOption);
-    }
-
-    public void flightTypeHandler() {
-        flightTypeService.initializeFlightTypeOptions(flightTypeOption);
-        flightTypeService.flightTypeListener(flightTypeOption);
-    }
-
-    private void flightDateHandler() {
-        flightDateService.initializeDepartDate(departDate);
-        flightDateService.initializeReturnDate(returnDate);
-        flightDateService.departDateListener(departDate);
-        flightDateService.returnDateListener(returnDate);
-    }
-//    public void departDateHandler(){
-//        departDateService.initializeDepartDate(departDate);
-//        departDateService.departDateListener(departDate);
-//    }
-
-    private void initializeTable() {
-        columnPropertyService.tableColumnProperties(tableView);
-    }
-
     @FXML
     private void findFlightButtonClick() {
         loadFlightService.findFlightButtonClick(fromLocationOption, toLocationOption,
@@ -172,23 +144,34 @@ public class FlightController {
         columnPropertyService.loadRecordCount(fromLocationOption.getValue(), toLocationOption.getValue(),
                 formatDateMonthYear(departDate), formatDateMonthYear(returnDate), flightTypeOption.getValue(), tableView);
     }
-
-    @FXML
-    private void createDashboard() {
-
-    }
-
     @FXML
     public void handleTableRowClick(MouseEvent event) {
         tableRowClickService.handleTableRowClick(event, tableView, bookButton,downloadPdf, bookingPane, dashboardPane, loginPane);
+        tableRowClickService.populateFlightDetails(originLabel,destinationLabel,departDateLabel,returnDateLabel,flightTypeLabel,flightSlotLabel,flightPriceLabel);
     }
-
+    private void initializeTable() {
+        columnPropertyService.tableColumnProperties(tableView);
+    }
+    public void locationHandler() {
+        locationService.initializeFromLocation(fromLocationOption);
+        locationService.initializeToLocation(toLocationOption);
+        locationService.fromLocationListener(fromLocationOption, toLocationOption);
+        locationService.toLocationListener(fromLocationOption, toLocationOption);
+    }
+    private void flightDateHandler() {
+        flightDateService.initializeDepartDate(departDate);
+        flightDateService.initializeReturnDate(returnDate);
+        flightDateService.departDateListener(departDate);
+        flightDateService.returnDateListener(returnDate);
+    }
+    public void flightTypeHandler() {
+        flightTypeService.initializeFlightTypeOptions(flightTypeOption);
+        flightTypeService.flightTypeListener(flightTypeOption);
+    }
     @FXML
-    private void handleBookingButtonClick() {
+    private void handlePaneVisibility() {
+        bookingPane.setVisible(false);
         dashboardPane.setVisible(false);
-        summaryPane.setVisible(true);
-
+        summaryPane.setVisible(false);
     }
-
-
 }

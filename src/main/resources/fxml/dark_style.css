@@ -4,42 +4,50 @@
 }
 
 .dark-label {
-    -fx-text-fill: #3b1c00; /* Text color for labels */
+    -fx-text-fill: #E1D9D1; /* Text color for labels */
+    -fx-font-weight: bolder;
 }
 
 .dark-combobox .list-cell {
     -fx-background-color: #3b1c00; /* Background color of the list cells */
     -fx-text-fill: #E1D9D1; /* Text color of the list cells */
+
 }
 
 .dark-combobox .list-view {
-    -fx-background-color: #E1D9D1; /* Background color of the dropdown */
+    -fx-background-color: #3b1c00; /* Background color of the dropdown */
 }
 
 .dark-combobox .list-view .cell {
-    -fx-background-color: #E1D9D1; /* Background color of each item in the dropdown */
-    -fx-text-fill: #3b1c00; /* Text color of each item in the dropdown */
+    -fx-background-color: #3b1c00; /* Background color of each item in the dropdown */
+    -fx-text-fill: #E1D9D1; /* Text color of each item in the dropdown */
 }
 
 .dark-combobox .list-view .cell:hover {
-    -fx-background-color: #C2BAA1; /* Background color of a hovered item in the dropdown */
+    -fx-background-color: rgba(225, 217, 209, 0.43); /* Background color of a hovered item in the dropdown */
 }
 
 .dark-combobox .list-view .cell:filled:selected {
-    -fx-background-color: #9C8C74; /* Background color of a selected item in the dropdown */
+    -fx-background-color: rgba(225, 217, 209, 0.43); /* Background color of a selected item in the dropdown */
     -fx-text-fill: #E1D9D1; /* Text color of a selected item in the dropdown */
 }
 
 .dark-combobox .list-view .cell:filled:focused {
-    -fx-background-color: #9C8C74; /* Background color of a focused item in the dropdown */
+    -fx-background-color: rgba(225, 217, 209, 0.43); /* Background color of a focused item in the dropdown */
     -fx-text-fill: #E1D9D1; /* Text color of a focused item in the dropdown */
 }
 
 .dark-combobox .list-view .cell:filled:selected:focused {
-    -fx-background-color: #9C8C74; /* Background color of a selected and focused item in the dropdown */
+    -fx-background-color: rgba(225, 217, 209, 0.43); /* Background color of a selected and focused item in the dropdown */
     -fx-text-fill: #E1D9D1; /* Text color of a selected and focused item in the dropdown */
 }
+.dark-combobox .arrow-button {
+    -fx-background-color: #3b1c00; /* Background color of the arrow button */
+}
 
+.dark-combobox .arrow-button .arrow {
+    -fx-background-color: #E1D9D1; /* Color of the arrow */
+}
 .modern-vbox {
     -fx-spacing: 10;
     -fx-padding: 20;
@@ -56,17 +64,23 @@
     -fx-border-color: #3b1c00;
 }
 
+
 .modern-button {
     -fx-font-size: 16px;
-    -fx-background-color: #3b1c00;
+    -fx-background-color: #3b1c00 !important;
     -fx-text-fill: white;
 }
 
-.modern-table-view {
-    -fx-font-size: 14px;
-    -fx-background-color: #3b1c00;
-    -fx-border-color: #3b1c00;
+.modern-table-view .column-header-background {
+    -fx-background-color: #3b1c00 !important;
 }
+
+.modern-table-view .column-header,
+.modern-table-view .table-row-cell {
+    -fx-text-fill: #E1D9D1 !important;
+}
+
+
 
 .table-cell {
     -fx-alignment: CENTER;
@@ -74,36 +88,39 @@
 
 .dark-datepicker {
     -fx-pref-width: 18ex;
-    -fx-control-inner-background: #E1D9D1;
-    -fx-control-inner-border: derive(#E1D9D1, 20%);
-    -fx-control-inner-background-alt: derive(#E1D9D1, 30%);
-    -fx-control-inner-border-alt: derive(#E1D9D1, 50%);
-    -fx-text-fill: #3b1c00;
+    -fx-control-inner-background: #3b1c00;
+    -fx-control-inner-border: derive(#3b1c00, 80%);
+    -fx-control-inner-background-alt: derive(#3b1c00, 80%);
+    -fx-control-inner-border-alt: derive(#3b1c00, 80%);
+    -fx-text-fill: #E1D9D1;
     -fx-font-size: 14px;
 }
 
 .dark-datepicker .arrow-button {
-    -fx-background-color: #E1D9D1;
+    -fx-background-color: #3b1c00;
 }
 
 .dark-datepicker .arrow-button:hover {
-    -fx-background-color: #E1D9D1;
+    -fx-background-color: #3b1c00;
 }
 
 .dark-datepicker .arrow-button:pressed {
-    -fx-background-color: #9C8C74;
+    -fx-background-color: #3b1c00;
 }
 
 .dark-button {
-    -fx-background-color: #E1D9D1;
-    -fx-text-fill: #3b1c00;
-    -fx-font-size: 14px;
-    -fx-padding: 8px 12px;
-    -fx-background-radius: 5px;
+    -fx-background-color: #3b1c00;
+    -fx-border-color: #3b1c00;
+    -fx-text-fill: #E1D9D1;
+    -fx-pref-width: 150px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 .dark-button:hover {
-    -fx-background-color: #C2BAA1;
+    -fx-background-color: #E1D9D1;
+    -fx-text-fill: #3b1c00;
+
 }
 
 #loginPane {
@@ -113,18 +130,25 @@
 
 .dark-text-field {
     -fx-background-color: #3b1c00;
-    -fx-text-fill: #3b1c00;
+    -fx-text-fill: #E1D9D1;
     -fx-pref-width: 150px;
+    -fx-background-radius: 10;
+
 }
 
 .dark-login-button {
     -fx-background-color: #3b1c00;
-    -fx-text-fill: white;
+    -fx-border-color: #3b1c00;
+    -fx-text-fill: #E1D9D1;
     -fx-pref-width: 150px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
+
 .dark-login-button:hover {
     -fx-background-color: #E1D9D1;
-    -fx-text-fill: white;
+    -fx-text-fill: #3b1c00;
+    -fx-background-radius: 10;
     -fx-pref-width: 150px;
 }
 
@@ -137,4 +161,38 @@
 .label {
     -fx-text-fill: #3b1c00;
     -fx-font-size: 14px;
+}
+.loginRectangle{
+    -fx-background-color: #E1D9D1;
+    -fx-max-width: 240px;
+    -fx-max-height: 140px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10, 0 , 0 , 2 );
+    -fx-background-radius: 10;
+}.summaryRectangle{
+    -fx-background-color: #E1D9D1;
+    -fx-max-width: 280px;
+    -fx-min-width: 280px;
+    -fx-max-height: 180px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10, 0 , 0 , 2 );
+    -fx-background-radius: 10;
+}
+
+ #dashBoard,#summaryLabel{
+     -fx-font-weight: bolder;
+ }
+
+/* In an external CSS file or inline styles */
+.back-button {
+    -fx-background-color: #3b1c00; /* Dark background color */
+    -fx-text-fill: #ffffff; /* Text color */
+    -fx-font-size: 9px; /* Font size */
+    -fx-padding: 5px 10px; /* Padding for better appearance */
+    -fx-border-color: #ffffff; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 5px; /* Border radius for rounded corners */
+}
+
+/* Hover effect */
+.back-button:hover {
+    -fx-background-color: #606060; /* Darker background color on hover */
 }

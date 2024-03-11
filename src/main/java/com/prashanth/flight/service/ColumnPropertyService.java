@@ -17,7 +17,7 @@ import static com.prashanth.flight.constant.TableColumnConstant.priceColumn;
 @AllArgsConstructor
 @Service
 public class ColumnPropertyService {
-    private FlightRepository flightRepository;
+    private final FlightRepository flightRepository;
     public void tableColumnProperties(TableView<Flight> tableView) {
         airlineColumn.setCellValueFactory(cellData -> cellData.getValue().airlineProperty());
         originColumn.setCellValueFactory(cellData -> cellData.getValue().originProperty());
@@ -40,16 +40,11 @@ public class ColumnPropertyService {
                                String departDate, String returnDate, String flightType,TableView<Flight> tableView) {
 
         int recordCount= findFlightsByCriteria(origin, destination, departDate, returnDate, flightType).size();
-        tableView.prefHeightProperty().bind(Bindings.size(tableView.getItems()).multiply(tableView.getFixedCellSize()).add(1000));
+        tableView.prefHeightProperty().bind(Bindings.size(tableView.getItems()).multiply(tableView.getFixedCellSize()).add(100));
     }
 
     public List<Flight> findFlightsByCriteria(String origin, String destination, String departDate,
                                               String returnDate, String flightType) {
-//        origin = origin.trim();
-//        destination = destination.trim();
-//        departDate = departDate.trim();
-//        returnDate = returnDate.trim();
-//        flightType = flightType.trim();
         return flightRepository.findByOriginAndDestinationAndDepartDateAndReturnDateAndFlightType(
                 origin, destination, departDate, returnDate, flightType
         );

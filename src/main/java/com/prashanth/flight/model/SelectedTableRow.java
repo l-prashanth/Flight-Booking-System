@@ -22,6 +22,9 @@ public class SelectedTableRow {
     public StringProperty flightTypeProperty() {
         return new SimpleStringProperty(this, "flightType", flightType);
     }
+    public StringProperty flightSlotProperty() {
+        return new SimpleStringProperty(this, "flightSlot", flightSlot);
+    }
 
     public StringProperty airlineProperty() {
         return new SimpleStringProperty(this, "airline", airline);

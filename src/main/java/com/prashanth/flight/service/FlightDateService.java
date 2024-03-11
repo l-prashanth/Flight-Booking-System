@@ -2,7 +2,6 @@ package com.prashanth.flight.service;
 
 import javafx.scene.control.DatePicker;
 import org.springframework.stereotype.Service;
-
 import static com.prashanth.flight.util.CommonUtil.dateUIFormatter;
 import static com.prashanth.flight.util.CommonUtil.formatDateMonthYear;
 
@@ -13,7 +12,7 @@ public class FlightDateService {
     }
 
     public void departDateListener(DatePicker departDate) {
-        departDate.setOnAction(event -> System.out.println("DepartDate:\t" + formatDateMonthYear(departDate)));
+        departDate.setOnAction(event -> formatDateMonthYear(departDate));
     }
 
     public void initializeReturnDate(DatePicker returnDate) {
@@ -21,6 +20,6 @@ public class FlightDateService {
     }
 
     public void returnDateListener(DatePicker returnDate) {
-        returnDate.setOnAction(event -> System.out.println("ReturnDate:\t" + formatDateMonthYear(returnDate)));
+        returnDate.setOnAction(event -> formatDateMonthYear(returnDate));
     }
 }

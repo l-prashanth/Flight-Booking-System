@@ -9,16 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
-
 import static com.prashanth.flight.constant.CommonConstant.*;
-import static com.prashanth.flight.constant.CommonConstant.FIRST_CLASS;
 import static com.prashanth.flight.util.CommonUtil.*;
 import static com.prashanth.flight.util.CommonUtil.randomTimeGenerator;
 
@@ -99,7 +94,6 @@ public class InitDatabase {
                         flight.setFlightType(flightType);
                         flight.setDepartDate(formattedDepartDate);
                         flight.setReturnDate(formattedReturnDate);
-
                         flightRepository.save(flight);
                         USED_COMBINATIONS.add(combinationKey);
                     }

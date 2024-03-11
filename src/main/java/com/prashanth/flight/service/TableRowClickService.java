@@ -3,14 +3,12 @@ package com.prashanth.flight.service;
 import com.prashanth.flight.model.Flight;
 import com.prashanth.flight.model.SelectedTableRow;
 import com.prashanth.flight.repository.SelectedTableRowRepository;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.prashanth.flight.util.CommonUtil.isNotNullOrEmpty;
@@ -20,10 +18,10 @@ import static com.prashanth.flight.util.CommonUtil.mouseClickEvent;
 @AllArgsConstructor
 public class TableRowClickService {
    private final SelectedTableRowRepository selectedTableRowRepository;
-   private final DashBoardService dashBoardService;
+   private final PopulateSelectedFlightDetails populateSelectedFlightDetails;
 
     public void handleTableRowClick(MouseEvent event, TableView<Flight> tableView, Button bookButton,Button downloadPdf,
-                                    BorderPane bookingPane, GridPane dashboardPane,BorderPane loginPane) {
+                                    BorderPane bookingPane, BorderPane dashboardPane,BorderPane loginPane) {
         if (Boolean.TRUE.equals(mouseClickEvent(event))) { // Single-click
             Flight selectedFlight = tableView.getSelectionModel().getSelectedItem();
             if (isNotNullOrEmpty(selectedFlight)) {
@@ -43,10 +41,15 @@ public class TableRowClickService {
                         selectedFlight.getReturnDate(),
                         selectedFlight.getFlightSlot(),
                         selectedFlight.getFlightType());
-
             }
         }
     }
+    public void populateFlightDetails(Label originLabel,Label destinationLabel,Label departDateLabel,
+                                      Label returnDateLabel,Label flightTypeLabel,Label flightSlotLabel,
+                                      Label flightPriceLabel){
+        populateSelectedFlightDetails.populateFlightDetails(originLabel,destinationLabel,departDateLabel,returnDateLabel,flightTypeLabel,flightSlotLabel,flightPriceLabel);
+    }
+
     private void storeBookingData(String airline,String origin,String destination,Double price,
                                   String departDate,String returnDate,String flightSlot,String flightType){
         SelectedTableRow selectedTableRow = new SelectedTableRow();
